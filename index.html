@@ -10,12 +10,11 @@ html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Poppins','Segoe UI',Arial,sans-serif;background:#111;min-height:100%}
 .hero{position:relative;height:100vh;min-height:560px;overflow:hidden;color:#fff;background:#111}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.1) 70%);pointer-events:none;z-index:2}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s ease;z-index:1}
 .slide.on{opacity:1;z-index:2}
 .slide .bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.02)}
-.slide.on .bg{animation:zoom 7s ease-out forwards}
-@keyframes zoom{to{transform:scale(1.1)}}
+.slide.on .bg{animation:zoom 8s linear forwards}
+@keyframes zoom{to{transform:scale(1.12)}}
 .cap{position:absolute;z-index:4;left:max(28px,calc((100% - 1300px)/2 + 28px));bottom:18%;max-width:620px;padding-right:20px}
 .cap h1{font-size:clamp(30px,5vw,56px);line-height:1.1;font-weight:700;margin-bottom:14px}
 .cap h1 b{color:var(--accent)}
@@ -95,21 +94,25 @@ t.addEventListener('click',function(){t.classList.toggle('open');n.classList.tog
 n.addEventListener('click',function(e){if(e.target.tagName==='A'){t.classList.remove('open');n.classList.remove('open')}});
 
 /* ===== HERO SLIDER =====
-   Apni photo lagane ke liye img mein URL daaliye, jaise img:'images/1.jpg'
+   9 photos: images folder mein 1.jpg se 9.jpg tak rakhiye
    img khaali ho to gradient dikhega. */
 var SLIDES=[
- {img:'',bg:'linear-gradient(135deg,#1b1f27,#3a4251 60%,#59657a)',title:'We Build <b>Better</b>',text:'Design, construction aur execution — ek hi chhat ke neeche, perfection ke saath.',btn:'Our Projects',href:'#projects'},
- {img:'',bg:'linear-gradient(135deg,#2a1608,#7a3a12 60%,#fd5a03)',title:'Design &amp; <b>Build</b>',text:'Modern aur smart workspaces jo aapke brand ko nayi pehchaan dete hain.',btn:'Know More',href:'#team'},
- {img:'',bg:'linear-gradient(135deg,#10222b,#1f4a5c 60%,#3d7f96)',title:'General <b>Contracting</b>',text:'Architectural plans ko samay par aur behtareen quality ke saath poora karna.',btn:'Our Clients',href:'#client'}
+ {img:'images/1.jpg',bg:'linear-gradient(135deg,#1b1f27,#3a4251)'},
+ {img:'images/2.jpg',bg:'linear-gradient(135deg,#2a1608,#7a3a12)'},
+ {img:'images/3.jpg',bg:'linear-gradient(135deg,#10222b,#1f4a5c)'},
+ {img:'images/4.jpg',bg:'linear-gradient(135deg,#1f1a2e,#41366b)'},
+ {img:'images/5.jpg',bg:'linear-gradient(135deg,#1e2a1a,#4a6b36)'},
+ {img:'images/6.jpg',bg:'linear-gradient(135deg,#2b1a1a,#7a3a3a)'},
+ {img:'images/7.jpg',bg:'linear-gradient(135deg,#1a2a2b,#2f6b6e)'},
+ {img:'images/8.jpg',bg:'linear-gradient(135deg,#2a2a1a,#6b6636)'},
+ {img:'images/9.jpg',bg:'linear-gradient(135deg,#1a1a1a,#4a4a4a)'}
 ];
 var INTERVAL=5000,cur=0,timer,sl=document.getElementById('slides'),dt=document.getElementById('dots'),hero=document.getElementById('home');
 SLIDES.forEach(function(d,i){
  var s=document.createElement('div');s.className='slide';
  var b=document.createElement('div');b.className='bg';
  b.style.backgroundImage=(d.img?'url("'+d.img+'"),':'')+d.bg;
- var c=document.createElement('div');c.className='cap';
- c.innerHTML='<h1>'+d.title+'</h1><p>'+d.text+'</p><a href="'+d.href+'">'+d.btn+'</a>';
- s.appendChild(b);s.appendChild(c);sl.appendChild(s);
+ s.appendChild(b);sl.appendChild(s);
  var k=document.createElement('button');k.setAttribute('aria-label','Slide '+(i+1));
  k.addEventListener('click',function(){go(i)});dt.appendChild(k);
 });
