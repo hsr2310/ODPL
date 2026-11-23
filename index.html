@@ -111,7 +111,7 @@ var INTERVAL=5000,cur=0,timer,sl=document.getElementById('slides'),dt=document.g
 SLIDES.forEach(function(d,i){
  var s=document.createElement('div');s.className='slide';
  var b=document.createElement('div');b.className='bg';
- b.style.backgroundImage=(d.img?'url("'+d.img+'"),':'')+d.bg;
+ b.style.backgroundImage=(d.img?'url("'+d.img+'"),':'')+'linear-gradient(#1b1f27,#1b1f27)';
  s.appendChild(b);sl.appendChild(s);
  var k=document.createElement('button');k.setAttribute('aria-label','Slide '+(i+1));
  k.addEventListener('click',function(){go(i)});dt.appendChild(k);
